@@ -23,24 +23,34 @@
         /* --- Menüleiste --- */
         .top-nav {
             display: flex;
-            flex-wrap: wrap;
             border-bottom: 4px solid black;
             background-color: white;
             position: sticky;
             top: 0;
             z-index: 100;
+            align-items: center;
+            height: 60px; /* Feste Höhe: Identisch mit der Breite der Sidebar */
         }
 
         .nav-empty {
-            width: 60px;
+            width: 60px; /* Identisch mit der Breite der Sidebar */
+            height: 100%;
             border-right: 4px solid black;
             flex-shrink: 0;
         }
 
-        .nav-link {
+        /* Container für die Links */
+        .nav-links {
+            display: flex;
             flex: 1;
-            text-align: center;
-            padding: 15px 20px;
+            height: 100%;
+        }
+
+        .nav-link, .nav-link2, .nav-link3, .nav-link4, .nav-link5 {
+            flex: 1;
+            display: flex;
+            align-items: center;     /* Zentriert den Text vertikal */
+            justify-content: center; /* Zentriert den Text horizontal */
             text-decoration: none;
             color: black;
             font-weight: bold;
@@ -48,99 +58,75 @@
             border-right: 4px solid black;
             transition: background-color 0.3s, color 0.3s;
             min-width: 120px;
+            height: 100%; /* Füllt die komplette Höhe der Headerleiste aus */
         }
 
-        .nav-link:last-child {
+        /* Entfernt den rechten Rand beim letzten Link */
+        .nav-links a:last-child {
             border-right: none;
         }
 
-        .nav-link:hover {
-            background-color: #f3cbe1; 
-            color: #000;
-        }
-        .nav-link2 {
-            flex: 1;
-            text-align: center;
-            padding: 15px 20px;
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-            font-size: 1.2rem;
-            border-right: 4px solid black;
-            transition: background-color 0.3s, color 0.3s;
-            min-width: 120px;
+        .nav-link:hover { background-color: #f3cbe1; color: #000; }
+        .nav-link2:hover { background-color: #3aaf71; color: #000; }
+        .nav-link3:hover { background-color: #6b85c3; color: #000; }
+        .nav-link4:hover { background-color: #edce76; color: #000; }
+        .nav-link5:hover { background-color: #278807; color: #000; }
+
+        /* --- Burger Menü Icon --- */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 35px;
+            height: 25px;
+            cursor: pointer;
+            margin: 0 20px;
+            margin-left: auto;
         }
 
-        .nav-link2:last-child {
-            border-right: none;
+        .burger-menu .line {
+            width: 100%;
+            height: 5px;
+            border-radius: 3px;
+            border: 1px solid black;
         }
 
-        .nav-link2:hover {
-            background-color: #3aaf71; 
-            color: #000;
-        }
-        .nav-link3 {
-            flex: 1;
-            text-align: center;
-            padding: 15px 20px;
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-            font-size: 1.2rem;
-            border-right: 4px solid black;
-            transition: background-color 0.3s, color 0.3s;
-            min-width: 120px;
-        }
+        .burger-menu .line1 { background-color: #f3cbe1; } 
+        .burger-menu .line2 { background-color: #3aaf71; } 
+        .burger-menu .line3 { background-color: #6b85c3; } 
 
-        .nav-link3:last-child {
-            border-right: none;
-        }
+        /* --- Responsive Ansicht (Mobile / Tablets) --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%; /* Klappt exakt unter den 60px hohen Header auf */
+                left: 0;
+                width: 100%;
+                background-color: white;
+                border-bottom: 4px solid black;
+                height: auto; /* Hebt die 100% Höhe für die mobile Liste auf */
+            }
 
-        .nav-link3:hover {
-            background-color: #6b85c3; 
-            color: #000;
-        }
-        .nav-link4 {
-            flex: 1;
-            text-align: center;
-            padding: 15px 20px;
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-            font-size: 1.2rem;
-            border-right: 4px solid black;
-            transition: background-color 0.3s, color 0.3s;
-            min-width: 120px;
-        }
+            .nav-links.active {
+                display: flex;
+            }
 
-        .nav-link4:last-child {
-            border-right: none;
-        }
+            .nav-link, .nav-link2, .nav-link3, .nav-link4, .nav-link5 {
+                border-right: none;
+                border-bottom: 2px solid black;
+                width: 100%;
+                height: 55px; /* Angenehme Klick-Höhe auf dem Smartphone */
+            }
 
-        .nav-link4:hover {
-            background-color: #edce76; 
-            color: #000;
-        }
-        .nav-link5 {
-            flex: 1;
-            text-align: center;
-            padding: 15px 20px;
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-            font-size: 1.2rem;
-            border-right: 4px solid black;
-            transition: background-color 0.3s, color 0.3s;
-            min-width: 120px;
-        }
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
 
-        .nav-link5:last-child {
-            border-right: none;
-        }
-
-        .nav-link5:hover {
-            background-color: #278807; 
-            color: #000;
+            .burger-menu {
+                display: flex;
+            }
         }
         
         /* --- Hauptbereich --- */
@@ -150,7 +136,7 @@
         }
 
         .sidebar {
-            width: 60px;
+            width: 60px; /* Feste Breite: Identisch mit der Höhe des Headers */
             border-right: 4px solid black;
             display: flex;
             flex-direction: column;
@@ -185,17 +171,13 @@
         /* --- Die exakte Projektbox --- */
         .project-box {
             display: grid;
-            /* 40 Teile fürs Bild, 3 Teile für den rechten Rahmen */
             grid-template-columns: 40fr 3fr;
-            /* 30 Teile fürs Bild, 3 Teile für den unteren Rahmen */
             grid-template-rows: 30fr 3fr;
-            /* Daraus ergibt sich das Gesamtratio: Breite(43) / Höhe(33) */
             aspect-ratio: 43 / 33; 
             border: 4px solid black; 
             background-color: white;
         }
 
-        /* Das Bildfeld (exakt 4:3) */
         .inner-content {
             grid-column: 1 / 2;
             grid-row: 1 / 2;
@@ -213,42 +195,37 @@
             object-position: top left;
         }
 
-        /* Rechter Rahmen mit 5 Flächen */
         .border-right {
             grid-column: 2 / 3;
             grid-row: 1 / 2;
-            border-left: 4px solid black; /* Die vertikale Trennlinie zum Bild */
+            border-left: 4px solid black; 
             display: flex;
-            flex-direction: column; /* Stapelt die 5 Boxen übereinander */
+            flex-direction: column; 
         }
 
         .border-right-box {
-            flex: 1; /* Teilt die Höhe exakt durch 5 */
+            flex: 1; 
         }
 
-        /* Zeichnet die 4 Trennstriche zwischen den 5 Boxen */
         .border-right-box:not(:last-child) {
             border-bottom: 4px solid black;
         }
 
-        /* Unterer Rahmen mit 5 Flächen */
         .border-bottom {
             grid-column: 1 / 2;
             grid-row: 2 / 3;
-            border-top: 4px solid black; /* Die horizontale Trennlinie zum Bild */
-            display: flex; /* Legt die 5 Boxen nebeneinander */
+            border-top: 4px solid black; 
+            display: flex; 
         }
 
         .border-bottom-box {
-            flex: 1; /* Teilt die Breite exakt durch 5 */
+            flex: 1; 
         }
 
-        /* Zeichnet die 4 Trennstriche zwischen den 5 Boxen */
         .border-bottom-box:not(:last-child) {
             border-right: 4px solid black;
         }
 
-        /* Die quadratische Ecke unten rechts */
         .border-corner {
             grid-column: 2 / 3;
             grid-row: 2 / 3;
@@ -263,11 +240,20 @@
 
     <nav class="top-nav">
         <div class="nav-empty"></div>
-        <a href="box.html" class="nav-link">Die Box</a>
-        <a href="wissen.html" class="nav-link2">Wissen</a>
-        <a href="material.html" class="nav-link3">Material</a>
-        <a href="workshops.html" class="nav-link4">Workshops</a>
-        <a href="partner.html" class="nav-link2">Partner</a>
+        
+        <div class="nav-links" id="nav-links">
+            <a href="pages/box.html" class="nav-link">Die Box</a>
+            <a href="pages/wissen.html" class="nav-link2">Wissen</a>
+            <a href="pages/material.html" class="nav-link3">Material</a>
+            <a href="pages/workshops.html" class="nav-link4">Workshops</a>
+            <a href="pages/partner.html" class="nav-link2">Partner</a>
+        </div>
+
+        <div class="burger-menu" id="burger-menu">
+            <div class="line line1"></div>
+            <div class="line line2"></div>
+            <div class="line line3"></div>
+        </div>
     </nav>
 
     <div class="main-container">
@@ -325,6 +311,7 @@
                     <div class="border-corner"></div>
                 </div>
             </a>
+            
             <a href="retro_2.html" class="grid-item">
                 <div class="project-box">
                     <div class="inner-content">
@@ -348,9 +335,16 @@
                 </div>
             </a>
             
-
-            </main>
+        </main>
     </div>
 
+    <script>
+        const burgerMenu = document.getElementById('burger-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        burgerMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
